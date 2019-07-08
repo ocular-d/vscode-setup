@@ -52,7 +52,8 @@ ubuntu() {
     echo "export PATH="$PATH:/$HOME/node_modules/.bin"" >> ~/.bashrc
     echo ""
     echo "Downloading VSCode settings"
-    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /"$HOME"/.config/Code/User/settings.json
+    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json \
+    -O /"$HOME"/.config/Code/User/settings.json
 }
 # Check if Homebrew is installed, install if we don't have it, update if we do
 homebrew() {
@@ -163,7 +164,8 @@ if [ "$OS" = "darwin" ]; then
     brew cask install font-fira-code
     echo ""
     echo "Downloading VSCode settings"
-    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /"$HOME"/Library/Application Support/Code/User
+    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json \
+    -O /"$HOME"/Library/Application\ Support/Code/User
     echo ""
     mac_code_cli
 fi
