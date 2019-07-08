@@ -49,10 +49,10 @@ ubuntu() {
     sudo curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sudo bash -s -- -b /usr/local/bin
     echo ""
     echo "Setting path for node"
-    echo 'export PATH="$PATH:/$HOME/node_modules/.bin"' >> ~/.bashrc
+    echo "export PATH="$PATH:/$HOME/node_modules/.bin"" >> ~/.bashrc
     echo ""
     echo "Downloading VSCode settings"
-    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /$HOME/.config/Code/User/settings.json
+    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /"$HOME"/.config/Code/User/settings.json
 }
 # Check if Homebrew is installed, install if we don't have it, update if we do
 homebrew() {
@@ -96,7 +96,7 @@ initOS() {
 
 extensions() {
     echo
-    echo -en "${COL_YELLOW} ==> Installing VSCode extensions ${COL_RESET}\n"
+    echo " ==> Installing VSCode extensions"
     code --install-extension pnp.polacode
     code --install-extension bierner.markdown-emoji
     code --install-extension AlanWalk.markdown-toc
@@ -114,12 +114,6 @@ extensions() {
     code --install-extension eamodio.gitlens
     code --install-extension drewbourne.vscode-remark-lint
     code --install-extension testthedocs.vale
-}
-
-# The end
-ending() {
-    echo
-    echo "Installation is done ! Have fun !"
 }
 
 # Run the functions
@@ -168,15 +162,20 @@ if [ "$OS" = "darwin" ]; then
     brew tap homebrew/cask-fonts
     brew cask install font-fira-code
     echo ""
-    echo "Setting path for commandline"
-    cat <<EOF >> ~/.bash_profile
-    # Add Visual Studio Code (code)
-    export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-    EOF
-    echo ""
     echo "Downloading VSCode settings"
-    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /$HOME/Library/Application Support/Code/User
+    wget https://gist.githubusercontent.com/ocular-d/cda72372a8168f0711700d417fa8a13e/raw/5f23d12b395dd62d271c02e5ee3af26a000c06c7/settings.json -O /"$HOME"/Library/Application Support/Code/User
+    echo ""
+    mac_code_cli
 fi
+
+mac_code_cli(){
+echo "Setting path for commandline"
+cat <<EOF >> ~/.bash_profile
+# Add Visual Studio Code (code)
+export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+EOF
+echo ""
+}
 
 # Same steps for every OS.
 # 4. Install NPM modules
@@ -184,8 +183,5 @@ npm_modules
 
 # 5. Install VSCode extensions
 extensions
-
-# 6. The end
-ending
 
 exit 0
