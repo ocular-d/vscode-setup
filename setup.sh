@@ -107,7 +107,6 @@ extensions() {
     code --install-extension ybaumes.highlight-trailing-white-spaces
     code --install-extension myh.preview-vscode
     code --install-extension mrmlnc.vscode-remark
-    code --install-extension swyphcosmo.spellchecker
     code --install-extension johnpapa.read-time
     code --install-extension vincaslt.highlight-matching-tag
     code --install-extension PKief.material-icon-theme
@@ -154,6 +153,7 @@ if [ "$OS" = "darwin" ]; then
     brew list --verbose hunspell || brew install hunspell
     brew list --verbose vale || brew tap ValeLint/vale && brew install vale
     brew list --verbose node || brew install node
+    brew list --verbose wget || brew install wget
     echo
     # Install VSCode
     echo "Installing VSCode"
